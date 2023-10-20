@@ -1,0 +1,351 @@
+<!--html version5-->
+<!DOCTYPE html>
+<html lang="en">
+
+<!--title bar แทบเล็ก-->
+<head>
+    <title>Overweight Calculator</title>
+</head>
+
+<!--รองรับภาษา unicode-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+<!--พื้นหลัง HTML background-->
+<style>
+    body {
+        background-color: rgba(172, 227, 180, 0.345);
+    }
+</style>
+<!--boostrap container ใว้บรรทุกคำสั่ง-->
+
+<body>
+    <div class="container">
+        <!--boostrap navs and tabs แทบปุ่มบน-->
+        <h5>
+            <nav class="navbar navbar-expand-lg p-1 navbar-light bg-success">
+                <a class="navbar-brand text-white col-sm-6" href="https://sci.skru.ac.th/science/admission.php">
+                    <h1><b><i><svg xmlns="http://www.w3.org/2000/svg" width="70" height="40" fill="currentColor"
+                                    class="bi bi-person-workspace" viewBox="0 0 16 16">
+                                    <path
+                                        d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H4Zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
+                                    <path
+                                        d="M2 1a2 2 0 0 0-2 2v9.5A1.5 1.5 0 0 0 1.5 14h.653a5.373 5.373 0 0 1 1.066-2H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v9h-2.219c.554.654.89 1.373 1.066 2h.653a1.5 1.5 0 0 0 1.5-1.5V3a2 2 0 0 0-2-2H2Z" />
+                                </svg>Edu.Computer</i></b></h1>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link text-white" href="#">Home <span class="sr-only text-white"></span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Link</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Dropdown
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item text-white" href="#">Action</a>
+                                <a class="dropdown-item text-white" href="#">Another action</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item text-white" href="#">Something else here</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled text-white" href="#">Disabled</a>
+                        </li>
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-1 text-white" type="submit">Search</button>
+                    </form>
+                </div>
+            </nav>
+        </h5>
+
+        <h1>
+            <div class="p-1 mb-4 col-sm-9 bg-whites text-dark"><b>Overweight Calculator</b>
+        </h1>
+        <!--boostrap grid คอลลัม-->
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                   <!--boostrap form controis ช่องต่างๆ--> 
+                    <form>
+                        <!--ช่องใส่อายุ -->
+                        <div class="form-group row">
+                            <label for="age" class="col-sm-2 col-form-label">Age</label>
+                            <div class="col-sm-5">
+                                <input type="number" class="border-2 border-success form-control" id="age"
+                                    placeholder="Age." value="25" min="2" max="120" onblur="check_age()">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="gender" class="col-sm-2 col-form-label">gender</label>
+
+                            <div class="form-check form-check-inline">
+                                <!--radio button ปุ่มกด -->
+                                <input class="border-2 border-success form-check-input" type="radio" name="gender"
+                                    id="gender" value="M">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-person-standing" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3ZM6 6.75v8.5a.75.75 0 0 0 1.5 0V10.5a.5.5 0 0 1 1 0v4.75a.75.75 0 0 0 1.5 0v-8.5a.25.25 0 1 1 .5 0v2.5a.75.75 0 0 0 1.5 0V6.5a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v2.75a.75.75 0 0 0 1.5 0v-2.5a.25.25 0 0 1 .5 0Z" />
+                                </svg>
+                                <label class="form-check-label" for="inlineRadio1">Male</label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input class="border-2 border-success form-check-input" type="radio" name="gender"
+                                    id="gender" value="F">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-person-standing-dress" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Zm-.5 12.25V12h1v3.25a.75.75 0 0 0 1.5 0V12h1l-1-5v-.215a.285.285 0 0 1 .56-.078l.793 2.777a.711.711 0 1 0 1.364-.405l-1.065-3.461A3 3 0 0 0 8.784 3.5H7.216a3 3 0 0 0-2.868 2.118L3.283 9.079a.711.711 0 1 0 1.365.405l.793-2.777a.285.285 0 0 1 .56.078V7l-1 5h1v3.25a.75.75 0 0 0 1.5 0Z" />
+                                </svg>
+                                <label class="form-check-label" for="gender">Female</label>
+                            </div>
+                        </div>
+                        <!--ช่องใส่ส่วนสูง -->
+                        <div class="form-group row">
+                            <label for="Height" class="col-sm-2 col-form-label">Height (cm)</label>
+                            <div class="col-sm-5">
+                                <input type="number" class="border-2 border-success form-control" id="height"
+                                    placeholder="cm." value="180" min="30" max="220" onblur="check_height()">
+                            </div>
+                        </div>
+                        <!--ช่องใส่น้ำหนัก -->
+                        <div class="form-group row">
+                            <label for="weight" class="col-sm-2 col-form-label">Weight (kg)</label>
+                            <div class="col-sm-5">
+                                <input type="number" class="border-2 border-success form-control" id="weight"
+                                    placeholder="kg." value="65" min="5" max="150" onblur="check_weight()">
+                            </div>
+                        </div>
+
+                        <button type="button" onclick="calculateBMI()" class="btn btn-success mb-15 ">Calculate</button>
+                        <button type="reset" class="btn btn-secondary">Clear</button>
+                    </form>
+                </div>
+
+
+                <div class="col">
+                    <h1>
+                        <p>
+                        <div class="p-2 mb-4 col-sm-9 bg-success text-white">Result</div>
+                        </p>
+                    </h1>
+                    <h3>
+                        <p id="result"></p>
+                    </h3>
+                    <h5>
+                        <p id="demo"></p>
+                    </h5>
+                    <h6>
+                        <p id="warning_age"></p>
+                        <p id="warning_height"></p>
+                        <p id="warning_weight"></p>
+                    </h6>
+
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function calculateBMI() {
+                let resultText = '';
+                let color;
+                const age = parseFloat(document.getElementById('age').value);
+                const gender = document.getElementById('gender').value;
+                const height = parseFloat(document.getElementById('height').value);
+                const weight = parseFloat(document.getElementById('weight').value);
+
+                const bmi = weight / Math.pow(height / 100, 2);
+
+
+
+                if (bmi < 16) {
+                    resultText = 'Severe Underweight';
+                    color = "#FF0000";
+                } else if (bmi >= 16 && bmi < 18.5) {
+                    resultText = 'Underweight';
+                    color = "#E9967A";
+                } else if (bmi >= 18.5 && bmi < 25) {
+                    resultText = 'Normal';
+                    color = "green";
+                } else if (bmi >= 25 && bmi < 30) {
+                    resultText = 'Overweight';
+                    color = "#E9967A";
+                } else if (bmi >= 30 && bmi < 35) {
+                    resultText = 'Obese Class I';
+                    color = "#FF4500";
+                } else if (bmi >= 35 && bmi < 40) {
+                    resultText = 'Obese Class II';
+                    color = "#FF0000";
+                } else if (bmi > 40) {
+                    resultText = 'Obese Class III';
+                    color = "#B22222";
+                }
+
+                const resultElement = document.getElementById('result');
+                resultElement.innerHTML = `Your weight is ${resultText.fontcolor(color)}`;
+
+                const minHeightWeight = 18.5 * Math.pow(height / 100, 2);
+                const maxHeightWeight = (24.9 * Math.pow(height / 100, 2)) + 0.3;
+                document.getElementById("demo").innerHTML = weightRangeText = `Normal weight range for the height: ${minHeightWeight.toFixed(1)} - ${maxHeightWeight.toFixed(1)} kgs.`;
+
+
+            }
+
+            function check_age() {
+                let age = document.getElementById("age").value;
+                if (age < 2 || age > 120) {
+                    document.getElementById("warning_age").innerHTML = "อายุต้องระหว่าง 2 - 120 ปี";
+                    document.getElementById("warning_age").style.color = "red";
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+            function check_height() {
+                let height = document.getElementById("height").value;
+                if (height < 30 || height > 220) {
+                    document.getElementById("warning_height").innerHTML = "ส่วนสูงต้องระหว่าง 30 - 220 เซนติเมตร";
+                    document.getElementById("warning_height").style.color = "red";
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+
+            function check_weight() {
+                let weight = document.getElementById("weight").value;
+                if (weight < 5 || weight > 150) {
+                    document.getElementById("warning_weight").innerHTML = "น้ำหนักต้องระหว่าง 5 - 150 กิโลกรัม";
+                    document.getElementById("warning_weight").style.color = "red";
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        </script>
+
+        <div class="col">
+
+            <h4>
+                <p>
+                <div class="p-0 mb-15 col-sm-9 text-black">What Is Being Overweight and Obesity?</div>
+                </p>
+            </h4>
+
+            <blockquote cite=>
+                Overweight refers to increased body weight in relation to height beyond the accepted<br>
+                standard.The standard has been defined by the medical profession on the basis of a<br>
+                variety of reference percentiles based on body mass index(BMI)in various populations.<br>
+                A widely used set of reference BMI values is that developed by three doctors ( Must A,<br>
+                Dallal GE, and Dietz WH ‐ Reference Data for Obesity, 1991 ) which is based on the <br>
+                sample from the first National Health and Nutrition Examination Survey (NHANES I).</blockquote>
+
+            <blockquote cite=>
+                Becoming overweight may or may not be due to increases in body fat.It may also be due <br>
+                to an increase in lean muscle. For example,professional athletes or military personnel<br>
+                may be very lean and muscular with very little body fat, yet they may weigh more than <br>
+                others of the same height. While they may qualify as overweight due to their large <br>
+                muscle mass, they are not necessarily fat.</blockquote>
+
+            <blockquote cite=>
+                Obesity is defined as an excessively high amount of body fat or adipose tissue in relation<br>
+                to lean body mass. Being obese means that body fat is now beyond an accepted standard for <br>
+                your height.</blockquote>
+
+            <blockquote cite=>
+                Currently, 34 percent of Americans are overweight and a separate 34 percent are obese,<br>
+                according to the Center for Disease Control and Prevention in Atlanta.</blockquote>
+
+            <h4>
+                <p>
+                <div class="p-9 mb-9 col-sm-9 text-black">Genetics Matter, But Don't Tell the Whole Story</div>
+                </p>
+            </h4>
+            <blockquote cite=>
+                There is a clear genetic tendency for obesity. But only for a relatively small percentage<br>
+                of the population. There is also a genetic tendency to becoming overweight, but this is <br>
+                less clearly defined.</blockquote>
+
+            <blockquote cite=>
+                Genetics don't tell the whole story, however. "Genes are not destiny," states the Harvard<br>
+                School of Public Health in a recent study.</blockquote>
+
+
+            <blockquote cite=>
+                For example, studies show that some of us have a genetic tendency to gain weight while <br>
+                eating fried foods, while others can consume all the fries they want to without gaining<br>
+                much weight.</blockquote>
+
+            <blockquote cite=>
+                In 2008, for example, a group of scientists demonstrated that physical activity offsets <br>
+                the effects of one obesity-promoting gene, a common variant of FTO. The study, in which<br>
+                17,058 Danish men and women took part, found that people who carried the obesity-promoting<br>
+                gene, and who were inactive, had higher BMIs than people without the gene variant who were<br>
+                inactive. Having a genetic predisposition to obesity did not seem to matter, however, for <br>
+                people who were active: Their BMIs were no higher or lower than those of people who did <br>
+                not have the obesity gene.</blockquote>
+
+            <h4>
+                <p>
+                <div class="p-9 mb-9 col-sm-9 text-black">Physical Activity Makes the Difference</div>
+                </p>
+            </h4>
+            <blockquote cite=>
+                It adds up to this: Physical activity gets energy out and helps keep you at a healthy <br>
+                weight, regardless of your genetic inheritance.</blockquote>
+
+            <blockquote cite=>
+                The best way to avoid being fat forever is to not get too fat in the first place.<br>
+                The latest research shows that, once you've been heavy and lost weight, you have <br>
+                to eat less and exercise more to simply maintain your body at a new, lower weight<br>
+                than would someone at the same height and weight who has never been heavy — <br>
+                essentially dieting for the rest of your life just to break even.
+            </blockquote>
+
+            <h4>
+                <p>
+                <div class="p-9 mb-9 col-sm-9 text-black">Physical Activity Makes the Difference</div>
+                </p>
+            </h4>
+            <blockquote cite=>
+                This is because the very act of losing weight places your body in a metabolically <br>
+                disadvantaged state — for how long, nobody is sure. Therefore, you need fewer <br>
+                calories simply to stay thinner, even if you're not trying to lose. There's <br>
+                a penalty to pay for having been overweight, experts say.</blockquote>
+
+            <blockquote cite=>
+                A study, published in the New England Journal of Medicine, suggests that if <br>
+                a person loses 10 percent of his or her body weight — going from, for example, <br>
+                150 pounds to 135 pounds — there is a long-lasting change in the levels of <br>
+                hunger-controlling hormones which will make her crave food. The body seeks <br>
+                to defend that formerly heavier weight you got to, and it has vigorous mechanisms<br>
+                to achieve that, the study shows. As soon as you drop your guard, the weight <br>
+                creeps back on because your metabolism is not working as efficiently. That's<br>
+                why losing a great deal of weight and keeping it off happens so infrequently.</blockquote>
+
+
+        </div>
+</body>
+
+</html>
